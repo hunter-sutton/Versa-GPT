@@ -1,0 +1,10 @@
+# main.py
+python-dotenv
+openai
+datetime
+
+# tokenizer.py
+tiktoken
+
+# /plugins/pdfReader/readPDF.py
+PyPDF2
