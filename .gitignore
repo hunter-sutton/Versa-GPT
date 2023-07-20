@@ -1,4 +1,4 @@
 .env
 prompts.txt
 __pycache__
-/plugins/pdfReader/pdfFolder/*
+/plugins/pdfReader/pdfs/*
