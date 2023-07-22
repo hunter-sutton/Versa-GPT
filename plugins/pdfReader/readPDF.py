@@ -2,7 +2,7 @@ import PyPDF2
 import os
 
 # Set the path to the folder where the PDF files are located
-pdf_folder = os.path.join(os.path.dirname(__file__), "pdfs/")
+pdf_folder = os.path.join(os.path.dirname(__file__), "pdfs\\")
 
 # Function to read text from a PDF file by name from pdf_folder
 def readTextFromFile(fileName):
