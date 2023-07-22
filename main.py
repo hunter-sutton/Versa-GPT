@@ -7,7 +7,7 @@ import plugins.pdfReader.readPDF as readPDF
 
 openai.api_key = dotenv.get_key(dotenv.find_dotenv(), "OPENAI_API_KEY")
 
-def clearScreenAndShowTitle(chat_name, model, prompt):
+def chatInfo(chat_name, model, prompt):
     print("\033c")
     print("===", chat_name, "===")
     print("=== Model: ", model, "===")
@@ -20,6 +20,7 @@ def modelSelect():
     print("2. gpt-4-32k")
     print("3. gpt-3.5-turbo")
     print("4. gpt-3.5-turbo-16k")
+
     model_choice = input("Your choice: ")
 
     if model_choice == '1':
@@ -53,6 +54,15 @@ def chatHistoryAppend(chat_history, userOrSystem, content):
         "content": content
     })
 
+def printChatHistory(chat_history):
+    for message in chat_history:
+        if message["role"] == "user":
+            print("\033[30;47mYou\033[0m")
+        else:
+            print("\033[30;47mAssistant\033[0m")
+        print(message["content"])
+        print()
+
 # Clear the terminal
 print("\033c")
 
@@ -79,7 +89,7 @@ except:
 # Initialize the chat history
 chat_history = chatHistoryInit(prompt)
 
-clearScreenAndShowTitle(chat_name, model, prompt)
+chatInfo(chat_name, model, prompt)
 
 # Create a while loop that allows the user to keep chatting
 print()
@@ -105,7 +115,7 @@ while True:
 
     elif user_input.lower() == 'clear':
         chat_history = chatHistoryInit(prompt)
-        clearScreenAndShowTitle(chat_name, model, prompt)
+        chatInfo(chat_name, model, prompt)
         continue
 
     elif user_input.lower() == 'pdf':
@@ -121,6 +131,18 @@ while True:
         else:
             continue
         chatHistoryAppend(chat_history, "user", pdf_text)
+
+    elif user_input.lower() == 'history':
+        printChatHistory(chat_history)
+        continue
+
+    elif user_input.lower() == 'help':
+        print("quit - quit the program")
+        print("clear - clear the chat history")
+        print("pdf - read a PDF file")
+        print("history - print the chat history")
+        print("help - print this help message")
+        continue
 
     elif user_input.lower() == '':
         print("Please enter a message.")

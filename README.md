@@ -12,6 +12,15 @@ VersaGPT is an application that uses the OpenAI API to allow the user to engage 
     - `OPENAI_API_KEY="<your-openai-api-key>"`
 5. Run the application.
 
+### Chat Commands
+Run these by sending a message containing only the command.
+
+- `quit` - Quits the application
+- `help` - Displays a list of commands
+- `history` - Prints the chat history
+- `clear` - Clears the chat history. This is like starting a new conversation using the same system prompt.
+- `pdf` - Starts the PDF Reader plugin. More information on plugins can be found [below](Plugins).
+
 ## Usage
 1. Run the application.
     - `python main.py`
@@ -44,6 +53,10 @@ VersaGPT includes the following plugins and more are being developed.
     - [ ] Change max_tokens
 - [ ] Allow user to save conversations and prompts to be loaded later
 ### Plugins
+- [ ] PDF Reader Improvements
+    - [ ] List PDFs for the user to choose from
+    - [ ] Allow user to specify page numbers to read
 - [ ] Google Search
 - [ ] Wolfram Alpha
 - [ ] Write/Execute Code
+- [ ] Prompt Improver
