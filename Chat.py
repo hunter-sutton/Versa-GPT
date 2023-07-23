@@ -12,6 +12,7 @@ class Chat:
         self.initModel()
         self.chatHistoryAppend("system", self.system_prompt)
     
+    # Gets the model from the user and saves it to self.model
     def initModel(self):
         # User selects the model to use
         print("Please select a model:")
@@ -33,6 +34,7 @@ class Chat:
         else:
             self.model = 'gpt-3.5-turbo'
 
+    # Gets chat name from the user and saves it to self.chat_name
     def initChatName(self):
         user_input = input("Name of Chatbot: ")
         if user_input == '':
@@ -40,6 +42,7 @@ class Chat:
         else:
             self.chat_name = user_input
     
+    # Gets system prompt from the user and saves it to self.system_prompt
     def initSystemPrompt(self):
         user_input = input("Your prompt: ")
         if user_input == '':
@@ -47,12 +50,14 @@ class Chat:
         else:
             self.system_prompt = user_input
 
+    # Appends a message to the chat history with the desired role
     def chatHistoryAppend(self, role, content):
         self.chat_history.append({
             "role": role,
             "content": content
         })
     
+    # Gets input from user, joins it into a string, and save it to self.user_message
     def getInputFromUser(self):
         user_input = []
         print("\033[30;47mYou\033[0m")

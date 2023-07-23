@@ -29,14 +29,19 @@ print()
 while True:
     chat.getInputFromUser()
 
+    # quit by breaking the loop
     if chat.user_message.lower() == 'quit':
         break
+
+    # clear the chat history
     elif chat.user_message.lower() == 'clear':
         chat.chat_history = []
         chat.chatHistoryAppend("system", chat.system_prompt)
         print("\033c")
         chat.printChatInfo()
         continue
+
+    # read a PDF file
     elif chat.user_message.lower() == 'pdf':
         pdf_name = input("PDF Name: ")
         pdf_text = readPDF.readTextFromFile(pdf_name)
@@ -45,15 +50,23 @@ while True:
             chat.chatHistoryAppend("user", pdf_text)
         else:
             continue
+
+    # print the chat history
     elif chat.user_message.lower() == 'history':
         chat.printChatHistory()
         continue
+
+    # print the help message
     elif chat.user_message.lower() == 'help':
         chat.printCommands()
         continue
+
+    # if the user enters nothing, print a message
     elif chat.user_message.lower() == '':
         print("Please enter a message or `help` to see other commands.")
         continue
+
+    # if the input is not a command, append it to the chat history
     else:
         chat.chatHistoryAppend("user", chat.user_message)
 
