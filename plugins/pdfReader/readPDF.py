@@ -26,17 +26,14 @@ def readTextFromFile(fileName):
     # Close the PDF file
     pdf_file.close()
 
+    pdf_text = addPrefixSuffix(pdf_text, fileName)
+
     # Return the text from the PDF file
     return pdf_text
 
-def addPrefixSuffix(prefix, suffix, pdfText, pdfName):
-    # if a prefix is passed then use it otherwise use the default: "Here is a PDF file. It is called " + pdfName + ".\n\n```"
-    if prefix == "":
-        prefix = "Here is a PDF file. It is called " + pdfName + ".\n\n```"
-
-    # if a suffix is passed then use it otherwise use the default: "```"
-    if suffix == "":
-        suffix = "```"
+def addPrefixSuffix(pdfText, pdfName):
+    prefix = "Here is a PDF file. It is called " + pdfName + ".\n\n```"
+    suffix = "```"    
 
     # Join the pdfText list into a single string where each line is separated by a newline like the following:
     # Here is a PDF file. It is called <pdfName>.
