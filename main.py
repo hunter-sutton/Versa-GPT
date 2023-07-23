@@ -21,20 +21,21 @@ except:
     with open("prompts.txt", "w") as prompts_file:
         prompts_file.write("\n\n" + chat.chat_name + " - " + str(datetime.datetime.now()) + "\n\n" + chat.system_prompt)
 
-chat.title()
-chat.chatInfo()
+chat.printTitle()
+chat.printChatInfo()
 print()
 
 # Create a while loop that allows the user to keep chatting
 while True:
-    chat.getUserInput()
+    chat.getInputFromUser()
 
     if chat.user_message.lower() == 'quit':
         break
     elif chat.user_message.lower() == 'clear':
         chat.chat_history = []
         chat.chatHistoryAppend("system", chat.system_prompt)
-        chat.chatInfo()
+        print("\033c")
+        chat.printChatInfo()
         continue
     elif chat.user_message.lower() == 'pdf':
         pdf_name = input("PDF Name: ")

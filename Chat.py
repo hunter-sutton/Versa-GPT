@@ -9,34 +9,10 @@ class Chat:
     def __init__(self):
         self.initChatName()
         self.initSystemPrompt()
-        self.modelSelect()
+        self.initModel()
         self.chatHistoryAppend("system", self.system_prompt)
     
-    def title(self):
-        print("\033c")
-        print(" __   __   ______     ______     ______     ______        ______     ______   ______  \n/\ \ / /  /\  ___\   /\  == \   /\  ___\   /\  __ \      /\  ___\   /\  == \ /\__  _\ \n\ \ \\'/   \ \  __\   \ \  __<   \ \___  \  \ \  __ \     \ \ \__ \  \ \  _-/ \/_/\ \/ \n \ \__|    \ \_____\  \ \_\ \_\  \/\_____\  \ \_\ \_\     \ \_____\  \ \_\      \ \_\ \n  \/_/      \/_____/   \/_/ /_/   \/_____/   \/_/\/_/      \/_____/   \/_/       \/_/ \n                                                                                      ")
-
-    def chatHistoryAppend(self, role, content):
-        self.chat_history.append({
-            "role": role,
-            "content": content
-        })
-
-    def printChatHistory(self):
-        for message in self.chat_history:
-            if message["role"] == "user":
-                print("\033[30;47mYou\033[0m")
-            else:
-                print("\033[30;47m" + message["role"] + "\033[0m")
-            print(message["content"])
-            print()
-
-    def chatInfo(self):
-        print("===", self.chat_name, "===")
-        print("=== Model: ", self.model, "===")
-        print("=== Prompt: ", self.system_prompt, "===")
-    
-    def modelSelect(self):
+    def initModel(self):
         # User selects the model to use
         print("Please select a model:")
         print("1. gpt-4")
@@ -70,8 +46,14 @@ class Chat:
             self.system_prompt = "You are a helpful assistant."
         else:
             self.system_prompt = user_input
+
+    def chatHistoryAppend(self, role, content):
+        self.chat_history.append({
+            "role": role,
+            "content": content
+        })
     
-    def getUserInput(self):
+    def getInputFromUser(self):
         user_input = []
         print("\033[30;47mYou\033[0m")
         while True:
@@ -89,3 +71,22 @@ class Chat:
         print("pdf - read a PDF file")
         print("history - print the chat history")
         print("help - print this help message")
+
+    def printChatInfo(self):
+        print("===", self.chat_name, "===")
+        print("=== Model: ", self.model, "===")
+        print("=== Prompt: ", self.system_prompt, "===")
+
+    def printTitle(self):
+        print("\033c")
+        # ASCII Art below from https://patorjk.com/software/taag/#p=display&f=Sub-Zero&t=Versa%20GPT
+        print(" __   __   ______     ______     ______     ______        ______     ______   ______  \n/\ \ / /  /\  ___\   /\  == \   /\  ___\   /\  __ \      /\  ___\   /\  == \ /\__  _\ \n\ \ \\'/   \ \  __\   \ \  __<   \ \___  \  \ \  __ \     \ \ \__ \  \ \  _-/ \/_/\ \/ \n \ \__|    \ \_____\  \ \_\ \_\  \/\_____\  \ \_\ \_\     \ \_____\  \ \_\      \ \_\ \n  \/_/      \/_____/   \/_/ /_/   \/_____/   \/_/\/_/      \/_____/   \/_/       \/_/ \n                                                                                      ")
+
+    def printChatHistory(self):
+        for message in self.chat_history:
+            if message["role"] == "user":
+                print("\033[30;47mYou\033[0m")
+            else:
+                print("\033[30;47m" + message["role"] + "\033[0m")
+            print(message["content"])
+            print()
