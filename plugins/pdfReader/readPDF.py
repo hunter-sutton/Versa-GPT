@@ -30,7 +30,7 @@ def readTextFromFile(fileName):
 
     for num in pages_array:
         # check if num is larger than the number of pages
-        if num >= len(pdf_reader.pages):
+        if num > len(pdf_reader.pages):
             break
 
         page = pdf_reader.pages[num-1]
@@ -48,7 +48,7 @@ def parsePageInput(s):
          if '-' in i else [int(i)]) for i in s.split(',')), [])
 
 
-def addPrefixSuffix(pdfText, pdfName):
+def addPrefixSuffix(prefix, pdfText, pdfName):
     prefix = "Here is a PDF file. It is called " + pdfName + ".\n\n```"
     suffix = "```"    
 
