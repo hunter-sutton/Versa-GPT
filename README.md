@@ -47,8 +47,8 @@ VersaGPT includes the following plugins and more are being developed.
     - [ ] Display messages in a more readable way
 - [ ] Model modification during conversation
     - [ ] Change model
-    - [ ] Change system prompt
-    - [ ] Change chatbot name
+    - [x] Change system prompt
+    - [x] Change chatbot name
     - [ ] Change temperature, top_p, and frequency_penalty
     - [ ] Change max_tokens
 - [ ] Allow user to save conversations and prompts to be loaded later

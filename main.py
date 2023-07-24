@@ -66,6 +66,17 @@ while True:
         chat.printChatHistory()
         continue
 
+    elif chat.user_message.lower() == 'name':
+        chat.initChatName()
+        continue
+
+    elif chat.user_message.lower() == 'prompt':
+        chat.initSystemPrompt()
+        chat.chat_history = []
+        chat.chatHistoryAppend("system", chat.system_prompt)
+        print("New system prompt accepted")
+        continue
+
     # print the help message
     elif chat.user_message.lower() == 'help':
         chat.printCommands()
