@@ -19,7 +19,7 @@ Run these by sending a message containing only the command.
 - `help` - Displays a list of commands
 - `history` - Prints the chat history
 - `clear` - Clears the chat history. This is like starting a new conversation using the same system prompt.
-- `pdf` - Starts the PDF Reader plugin. More information on plugins can be found [below](Plugins).
+- `pdf` - Starts the PDF Reader plugin. More information on plugins can be found below.
 
 ## Usage
 1. Run the application.
@@ -31,7 +31,7 @@ Run these by sending a message containing only the command.
     - This is the prompt that the chatbot will use to guide its behavior.
     - If left blank, the prompt defaults to "You are a helpful assistant."
 5. Begin chatting with the chatbot.
-    - Plugins can be used by sending a message containing only the name of the plugin. More information on plugins can be found [below](Plugins).
+    - Plugins can be used by sending a message containing only the name of the plugin. More information on plugins can be found below.
 
 ## Plugins
 VersaGPT includes the following plugins and more are being developed.
