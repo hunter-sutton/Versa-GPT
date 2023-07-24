@@ -13,7 +13,7 @@ VersaGPT is an application that uses the OpenAI API to allow the user to engage 
 5. Run the application.
     - `python main.py`
 
-### Chat Commands
+## Chat Commands
 Run these by sending a message containing only the command.
 
 - `clear` - Clears the chat history. This is like starting a new conversation using the same system prompt.
