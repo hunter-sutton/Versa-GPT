@@ -11,15 +11,18 @@ VersaGPT is an application that uses the OpenAI API to allow the user to engage 
 4. Add the following to the `.env` file:
     - `OPENAI_API_KEY="<your-openai-api-key>"`
 5. Run the application.
+    - `python main.py`
 
 ### Chat Commands
 Run these by sending a message containing only the command.
 
-- `quit` - Quits the application
+- `clear` - Clears the chat history. This is like starting a new conversation using the same system prompt.
 - `help` - Displays a list of commands
 - `history` - Prints the chat history
-- `clear` - Clears the chat history. This is like starting a new conversation using the same system prompt.
-- `pdf` - Starts the PDF Reader plugin. More information on plugins can be found below.
+- `name` - Change the name of the chatbot
+- `pdf` - Starts the PDF Reader plugin (more information below)
+- `prompt` - Change the system prompt
+- `quit` - Quits the application
 
 ## Usage
 1. Run the application.
