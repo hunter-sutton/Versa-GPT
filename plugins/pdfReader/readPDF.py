@@ -15,21 +15,38 @@ def readTextFromFile(fileName):
     # Get the number of pages in the PDF file
     num_pages = len(pdf_reader.pages)
     print("Number of pages: " + str(num_pages))
+    print("Enter the pages you'd like to read (e.g. '1-4, 6, 7-9').")
+    desired_pages = input("> ")
+    pages_array = []
 
-    # Create a list to hold the text from each page in the PDF file
-    pdf_text = []
+    if desired_pages == "":
+        # fill pages_array with numbers from 1 to num_pages
+        for i in range(num_pages):
+            pages_array.append(i+1)
+    else:
+        pages_array = parsePageInput(desired_pages)
+    
+    pdf_text = ""
 
-    # Loop through each page in the PDF file and append the text to the list
-    for page in range(num_pages):
-        pdf_text.append(pdf_reader.pages[page].extract_text())
+    for num in pages_array:
+        # check if num is larger than the number of pages
+        if num >= len(pdf_reader.pages):
+            break
 
-    # Close the PDF file
-    pdf_file.close()
+        page = pdf_reader.pages[num-1]
+        page_text = page.extract_text()
+        pdf_text += page_text
 
-    pdf_text = addPrefixSuffix(pdf_text, fileName)
+        print(page_text)
 
-    # Return the text from the PDF file
     return pdf_text
+
+# function to get array of numbers from input
+# https://stackoverflow.com/questions/6405208/how-to-convert-numeric-string-ranges-to-a-list-in-python  
+def parsePageInput(s):
+    return sum(((list(range(*[int(j) + k for k,j in enumerate(i.split('-'))]))
+         if '-' in i else [int(i)]) for i in s.split(',')), [])
+
 
 def addPrefixSuffix(pdfText, pdfName):
     prefix = "Here is a PDF file. It is called " + pdfName + ".\n\n```"

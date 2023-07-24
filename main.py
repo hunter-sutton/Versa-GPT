@@ -43,19 +43,19 @@ while True:
 
     # read a PDF file
     elif chat.user_message.lower() == 'pdf':
+        # get a list of the available PDFs
         pdfs = readPDF.listPdfs()
-        pdf_text = ""
+
         print("PDFs:")
         for index, pdf in enumerate(pdfs):
             print(str(index + 1) + ". " + pdf)
+
         print("Which PDF would you like to read?")
         user_input = input("> ")
-        try:
-            pdf_text = readPDF.readTextFromFile(pdfs[int(user_input) - 1])
-        except:
-            print("Invalid input")
-            continue
+
+        pdf_text = readPDF.readTextFromFile(pdfs[int(user_input) - 1])
         tokens = tokenizer.calculateTokens(pdf_text, chat.model)
+
         if tokenizer.verifyTokens(tokens):
             chat.chatHistoryAppend("user", pdf_text)
         else:
