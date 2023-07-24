@@ -54,7 +54,7 @@ VersaGPT includes the following plugins and more are being developed.
 - [ ] Allow user to save conversations and prompts to be loaded later
 ### Plugins
 - [ ] PDF Reader Improvements
-    - [ ] List PDFs for the user to choose from
+    - [x] List PDFs for the user to choose from
     - [ ] Allow user to specify page numbers to read
 - [ ] Google Search
 - [ ] Wolfram Alpha

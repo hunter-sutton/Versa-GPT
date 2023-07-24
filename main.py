@@ -4,7 +4,7 @@ import datetime
 import tokenizer
 
 from Chat import Chat
-import plugins.pdfReader.readPDF as readPDF
+from plugins.pdfReader import readPDF
 
 openai.api_key = dotenv.get_key(dotenv.find_dotenv(), "OPENAI_API_KEY")
 
@@ -43,8 +43,18 @@ while True:
 
     # read a PDF file
     elif chat.user_message.lower() == 'pdf':
-        pdf_name = input("PDF Name: ")
-        pdf_text = readPDF.readTextFromFile(pdf_name)
+        pdfs = readPDF.listPdfs()
+        pdf_text = ""
+        print("PDFs:")
+        for index, pdf in enumerate(pdfs):
+            print(str(index + 1) + ". " + pdf)
+        print("Which PDF would you like to read?")
+        user_input = input("> ")
+        try:
+            pdf_text = readPDF.readTextFromFile(pdfs[int(user_input) - 1])
+        except:
+            print("Invalid input")
+            continue
         tokens = tokenizer.calculateTokens(pdf_text, chat.model)
         if tokenizer.verifyTokens(tokens):
             chat.chatHistoryAppend("user", pdf_text)

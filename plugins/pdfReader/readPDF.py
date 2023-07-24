@@ -45,3 +45,16 @@ def addPrefixSuffix(pdfText, pdfName):
     pdfText = prefix + pdfText + suffix
 
     return pdfText
+
+def listPdfs():
+    # Create a list to hold the names of the PDF files
+    pdfs = []
+
+    # Loop through the files in the pdf_folder
+    for file in os.listdir(pdf_folder):
+        # If the file is a PDF file, append the name to the pdfs list
+        if file.endswith(".pdf"):
+            pdfs.append(file)
+
+    # Return the list of PDF file names
+    return pdfs
