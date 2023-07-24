@@ -13,17 +13,6 @@ VersaGPT is an application that uses the OpenAI API to allow the user to engage 
 5. Run the application.
     - `python main.py`
 
-## Chat Commands
-Run these by sending a message containing only the command.
-
-- `clear` - Clears the chat history. This is like starting a new conversation using the same system prompt.
-- `help` - Displays a list of commands
-- `history` - Prints the chat history
-- `name` - Change the name of the chatbot
-- `pdf` - Starts the PDF Reader plugin (more information below)
-- `prompt` - Change the system prompt
-- `quit` - Quits the application
-
 ## Usage
 1. Run the application.
     - `python main.py`
@@ -35,6 +24,17 @@ Run these by sending a message containing only the command.
     - If left blank, the prompt defaults to "You are a helpful assistant."
 5. Begin chatting with the chatbot.
     - Plugins can be used by sending a message containing only the name of the plugin. More information on plugins can be found below.
+
+## Chat Commands
+Run these by sending a message containing only the command.
+
+- `clear` - Clears the chat history. This is like starting a new conversation using the same system prompt.
+- `help` - Displays a list of commands
+- `history` - Prints the chat history
+- `name` - Change the name of the chatbot
+- `pdf` - Starts the PDF Reader plugin (more information below)
+- `prompt` - Change the system prompt
+- `quit` - Quits the application
 
 ## Plugins
 VersaGPT includes the following plugins and more are being developed.
