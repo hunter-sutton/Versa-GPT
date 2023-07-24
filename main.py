@@ -43,6 +43,7 @@ while True:
 
     # read a PDF file
     elif chat.user_message.lower() == 'pdf':
+        print("*** PDF Reader ***")
         # get a list of the available PDFs
         pdfs = readPDF.listPdfs()
 
@@ -57,7 +58,19 @@ while True:
         tokens = tokenizer.calculateTokens(pdf_text, chat.model)
 
         if tokenizer.verifyTokens(tokens):
-            chat.chatHistoryAppend("user", pdf_text)
+            print("You may now choose an action to perform on the PDF.")
+            print("1. Simply give the PDF text to the chatbot")
+            print("2. Summarize the PDF")
+            action = input("> ")
+
+            if action.isdigit():
+                action = int(action)
+            else:
+                action = 1
+
+            user_message = readPDF.addPrefixSuffix(action, pdf_text)
+
+            chat.chatHistoryAppend("user", user_message)
         else:
             continue
 

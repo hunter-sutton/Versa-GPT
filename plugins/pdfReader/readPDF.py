@@ -37,8 +37,6 @@ def readTextFromFile(fileName):
         page_text = page.extract_text()
         pdf_text += page_text
 
-        print(page_text)
-
     return pdf_text
 
 # function to get array of numbers from input
@@ -48,20 +46,15 @@ def parsePageInput(s):
          if '-' in i else [int(i)]) for i in s.split(',')), [])
 
 
-def addPrefixSuffix(prefix, pdfText, pdfName):
-    prefix = "Here is a PDF file. It is called " + pdfName + ".\n\n```"
-    suffix = "```"    
+def addPrefixSuffix(option, pdfText):
+    actions = {
+        1: "Here is the text from a PDF.\n\n```",
+        2: "Summarize the following text from the PDF file named <pdfName>." 
+    }
 
-    # Join the pdfText list into a single string where each line is separated by a newline like the following:
-    # Here is a PDF file. It is called <pdfName>.
-    # 
-    # ```
-    # <pdfText>
-    # ```
-    pdfText = ''.join(pdfText)
-    pdfText = prefix + pdfText + suffix
+    formatted_pdf_text = actions[option] + pdfText + "```"
 
-    return pdfText
+    return formatted_pdf_text
 
 def listPdfs():
     # Create a list to hold the names of the PDF files
