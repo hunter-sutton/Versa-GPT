@@ -1,7 +1,7 @@
 # VersaGPT
 
 ## Introduction
-VersaGPT is an application that uses the OpenAI API to allow the user to engage in a conversation with a GPT model. Plugins are included in the application and allow VersaGPT to do things that a chatbot cannot normall do.
+VersaGPT is an application that uses the OpenAI API to allow the user to engage in a conversation with a GPT model. Plugins are included in the application and allow VersaGPT to do things that a chatbot cannot normally do.
 
 ## Installation
 1. Clone the repository.
