@@ -1,7 +1,6 @@
 import dotenv
 import openai
 import datetime
-import tokenizer
 
 from Chat import Chat
 from plugins.pdfReader import readPDF
@@ -10,97 +9,52 @@ openai.api_key = dotenv.get_key(dotenv.find_dotenv(), "OPENAI_API_KEY")
 
 print("\033c")
 
-# Create a new chat instance
+# Create a new chat instance. During initialization, the user is prompted
+# to enter a chat name, system prompt, and model.
 chat = Chat()
 
-# Save the system prompt to a file
+# Save the system prompt to a file, prompts.txt
 try:
+    # If the file exists, append the system prompt to the end of the file
     with open("prompts.txt", "a") as prompts_file:
         prompts_file.write("\n\n" + chat.chat_name + " - " + str(datetime.datetime.now()) + "\n\n" + chat.system_prompt)
 except:
+    # If the file does not exist, create it and write the system prompt to it
     with open("prompts.txt", "w") as prompts_file:
         prompts_file.write("\n\n" + chat.chat_name + " - " + str(datetime.datetime.now()) + "\n\n" + chat.system_prompt)
 
+# Clear the terminal and print the chat name, model, and system prompt
 chat.printTitle()
 chat.printChatInfo()
 print()
 
-# Create a while loop that allows the user to keep chatting
+# Start the conversation
 while True:
     chat.getInputFromUser()
 
-    # quit by breaking the loop
     if chat.user_message.lower() == 'quit':
         break
-
-    # clear the chat history
     elif chat.user_message.lower() == 'clear':
-        chat.chat_history = []
-        chat.chatHistoryAppend("system", chat.system_prompt)
-        print("\033c")
-        chat.printChatInfo()
+        chat.clear()
         continue
-
-    # read a PDF file
     elif chat.user_message.lower() == 'pdf':
-        print("*** PDF Reader ***")
-        # get a list of the available PDFs
-        pdfs = readPDF.listPdfs()
-
-        print("PDFs:")
-        for index, pdf in enumerate(pdfs):
-            print(str(index + 1) + ". " + pdf)
-
-        print("Which PDF would you like to read?")
-        user_input = input("> ")
-
-        pdf_text = readPDF.readTextFromFile(pdfs[int(user_input) - 1])
-        tokens = tokenizer.calculateTokens(pdf_text, chat.model)
-
-        if tokenizer.verifyTokens(tokens):
-            print("You may now choose an action to perform on the PDF.")
-            print("1. Simply give the PDF text to the chatbot")
-            print("2. Summarize the PDF")
-            action = input("> ")
-
-            if action.isdigit():
-                action = int(action)
-            else:
-                action = 1
-
-            user_message = readPDF.addPrefixSuffix(action, pdf_text)
-
-            chat.chatHistoryAppend("user", user_message)
-        else:
-            continue
-
-    # print the chat history
-    elif chat.user_message.lower() == 'history':
-        chat.printChatHistory()
+        readPDF.run(chat)
         continue
-
+    elif chat.user_message.lower() == 'history':
+        chat.history()
+        continue
     elif chat.user_message.lower() == 'name':
         chat.initChatName()
         continue
-
     elif chat.user_message.lower() == 'prompt':
-        chat.initSystemPrompt()
-        chat.chat_history = []
-        chat.chatHistoryAppend("system", chat.system_prompt)
-        print("New system prompt accepted")
+        chat.prompt()
         continue
-
-    # print the help message
     elif chat.user_message.lower() == 'help':
-        chat.printCommands()
+        chat.help()
         continue
-
-    # if the user enters nothing, print a message
     elif chat.user_message.lower() == '':
         print("Please enter a message or `help` to see other commands.")
         continue
-
-    # if the input is not a command, append it to the chat history
     else:
         chat.chatHistoryAppend("user", chat.user_message)
 

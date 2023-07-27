@@ -50,6 +50,40 @@ class Chat:
         else:
             self.system_prompt = user_input
 
+    # Clears the chat history. This is like starting a new chat.
+    def clear(self):
+        self.chat_history = []
+        self.chatHistoryAppend("system", self.system_prompt)
+        print("\033c")
+        self.printChatInfo()
+
+    # Allows the user to change the system prompt
+    def prompt(self):
+        self.initSystemPrompt()
+        self.chat_history = []
+        self.chatHistoryAppend("system", self.system_prompt)
+        print("New prompt set.")
+    
+    # Prints information about available commands
+    def help(self):
+        print("clear - clear the chat history")
+        print("help - print this help message")
+        print("history - print the chat history")
+        print("name - change the chat name")
+        print("pdf - read a PDF file")
+        print("prompt - change the system prompt")
+        print("quit - quit the program")
+
+    # Prints the chat history
+    def history(self):
+        for message in self.chat_history:
+            if message["role"] == "user":
+                print("\033[30;47mYou\033[0m")
+            else:
+                print("\033[30;47m" + message["role"] + "\033[0m")
+            print(message["content"])
+            print()
+
     # Appends a message to the chat history with the desired role
     def chatHistoryAppend(self, role, content):
         self.chat_history.append({
@@ -69,13 +103,6 @@ class Chat:
                 user_input.append(line)
         user_input = '\n'.join(user_input)
         self.user_message = user_input
-    
-    def printCommands(self):
-        print("quit - quit the program")
-        print("clear - clear the chat history")
-        print("pdf - read a PDF file")
-        print("history - print the chat history")
-        print("help - print this help message")
 
     def printChatInfo(self):
         print("===", self.chat_name, "===")
@@ -86,12 +113,3 @@ class Chat:
         print("\033c")
         # ASCII Art below from https://patorjk.com/software/taag/#p=display&f=Sub-Zero&t=Versa%20GPT
         print(" __   __   ______     ______     ______     ______        ______     ______   ______  \n/\ \ / /  /\  ___\   /\  == \   /\  ___\   /\  __ \      /\  ___\   /\  == \ /\__  _\ \n\ \ \\'/   \ \  __\   \ \  __<   \ \___  \  \ \  __ \     \ \ \__ \  \ \  _-/ \/_/\ \/ \n \ \__|    \ \_____\  \ \_\ \_\  \/\_____\  \ \_\ \_\     \ \_____\  \ \_\      \ \_\ \n  \/_/      \/_____/   \/_/ /_/   \/_____/   \/_/\/_/      \/_____/   \/_/       \/_/ \n                                                                                      ")
-
-    def printChatHistory(self):
-        for message in self.chat_history:
-            if message["role"] == "user":
-                print("\033[30;47mYou\033[0m")
-            else:
-                print("\033[30;47m" + message["role"] + "\033[0m")
-            print(message["content"])
-            print()
