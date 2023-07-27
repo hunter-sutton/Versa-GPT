@@ -8,3 +8,4 @@ tiktoken
 
 # /plugins/pdfReader/readPDF.py
 PyPDF2
+os
