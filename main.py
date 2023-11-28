@@ -60,11 +60,11 @@ while True:
 
     # Request a response from the selected model
     try:
-        response = openai.ChatCompletion.create(
+        response = openai.chat.completions.create(
             model=chat.model,
             messages=chat.chat_history, # Pass the updated chat history
             temperature=chat.temperature,
-            max_tokens=2048,
+            max_tokens=748,
             top_p=1,
             frequency_penalty=0,
             presence_penalty=0
@@ -85,8 +85,8 @@ while True:
     # Print the model's response
     print()
     print("\033[30;47m" + "==" + chat.chat_name + "==" + "\033[0m")
-    print(response["choices"][0]["message"]["content"])
+    print(response.choices[0].message.content)
     print()
 
     # Append the model's response to the chat history
-    chat.chatHistoryAppend("assistant", response["choices"][0]["message"]["content"])
+    chat.chatHistoryAppend("assistant", response.choices[0].message.content)
