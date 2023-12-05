@@ -35,6 +35,7 @@ Run these by sending a message containing only the command.
 - `pdf` - Starts the PDF Reader plugin (more information below)
 - `prompt` - Change the system prompt
 - `quit` - Quits the application
+- `temp` - Change the temperature of the chatbot
 
 ## Plugins
 VersaGPT includes the following plugins and more are being developed.
