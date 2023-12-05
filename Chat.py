@@ -46,7 +46,7 @@ class Chat:
     def initSystemPrompt(self):
         user_input = input("Your prompt: ")
         if user_input == '':
-            self.system_prompt = "You are a helpful assistant."
+            self.system_prompt = ""
         else:
             self.system_prompt = user_input
 
@@ -63,6 +63,24 @@ class Chat:
         self.chat_history = []
         self.chatHistoryAppend("system", self.system_prompt)
         print("New prompt set.")
+
+    # Allows the user to change the temperature
+    def temp(self):
+        user_input = input("New temperature: ")
+
+        if user_input == '':
+            self.temperature = 1
+            print("Temperature reset to 1.")
+            return
+
+        user_input = float(user_input)
+
+        if user_input < 0 or user_input > 2:
+            print("Temperature must be between 0 and 2.")
+            return
+        
+        self.temperature = user_input
+        print("Temperature set to", user_input)
     
     # Prints information about available commands
     def help(self):

@@ -49,6 +49,9 @@ while True:
     elif chat.user_message.lower() == 'prompt':
         chat.prompt()
         continue
+    elif chat.user_message.lower() == 'temp':
+        chat.temp()
+        continue
     elif chat.user_message.lower() == 'help':
         chat.help()
         continue
